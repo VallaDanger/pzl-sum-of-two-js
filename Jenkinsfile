@@ -61,9 +61,12 @@ pipeline {
 
         stage('sonar') {
             steps {
-                def sonarScannerHome = tool 'sonar-scanner-v4';
+                script {
+                    def sonarScannerHome = tool 'sonar-scanner-v4'
+                    env.sonar_scanner_home = sonarScannerHome
+                }
                 withSonarQubeEnv(installationName: 'sonar') {
-                    sh "${sonarScannerHome}/bin/sonar-scanner"
+                    sh "${sonar_scanner_home}/bin/sonar-scanner"
                 }
             }
         }
