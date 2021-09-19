@@ -6,6 +6,7 @@ pipeline {
 
     tools { 
         nodejs 'node-14'
+        sonarscanner 'sonar-scanner-v4'
     }
     
     environment {
