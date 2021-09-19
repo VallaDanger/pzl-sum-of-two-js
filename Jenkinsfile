@@ -6,7 +6,6 @@ pipeline {
 
     tools { 
         nodejs 'node-14'
-        sonarscanner 'sonar-scanner-v4'
     }
     
     environment {
@@ -54,10 +53,17 @@ pipeline {
             }
         }
 
+        stage ('coverage') {
+            steps {
+                sh "npm run coverage"
+            }
+        }
+
         stage('sonar') {
             steps {
+                def sonarScannerHome = tool 'sonar-scanner-v4';
                 withSonarQubeEnv(installationName: 'sonar') {
-                    sh "npm run sonar"
+                    sh "${sonarScannerHome}/bin/sonar-scanner"
                 }
             }
         }

@@ -5,7 +5,7 @@
   "scripts": {
     "test": "mocha --recursive",
     "coverage": "nyc mocha --recursive --reporter mocha-multi-reporters --reporter-options configFile=.mocha-multi-config.json -r ts-node/register test/**/*.test.ts && nyc report",
-    "sonar": "npm run coverage && sonar-scanner",
+    "sonar": "npm run coverage && ${sonar_scanner_home}/bin/sonar-scanner",
     "lint": "gts lint",
     "clean": "gts clean",
     "compile": "tsc --declaration",
